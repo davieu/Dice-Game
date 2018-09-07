@@ -7,25 +7,52 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 */
 
-var scores, roundScore, activePlayer, dice;
+var scores, roundScore, activePlayer;
 
 scores = [0, 0];
 roundScore = 0;
 activePlayer = 0;
 
-//roll a dice randomly 1-6
-dice = Math.floor(Math.random()*6)+1;
+//hides dice at the beginning of game.
+document.querySelector('.dice').style.display = 'none';
 
-//select the activePlayer and gives current dice score to DOM using type-coercion. ('#current-' + activePlayer)
+// document.getElementById('score-0').textContent = '0';
+// document.getElementById('score-1').textContent = '0';
+// document.getElementById('current-0').textContent = '0';
+// document.getElementById('current-1').textContent = '0';
+
+document.querySelector('#score-0').innerHTML = '0';
+document.querySelector('#score-1').innerHTML = '0';
+document.querySelector('#current-0').innerHTML = '0';
+document.querySelector('#current-1').innerHTML = '0';
+
+//anonymous function- function that doesnt have a name so it cant be reused
+document.querySelector('.btn-roll').addEventListener('click', function() {
+    //roll a dice randomly 1-6
+    var dice = Math.floor(Math.random() *6) +1;
+    //2. display the result
+    var diceDOM = document.querySelector('.dice');
+    diceDOM.style.display = 'block';
+    diceDOM.src = 'img/dice-' + dice + '.png';
+    //Update the round score IF the rolled number was not 1.
+});
+
+
+
+
+
 //.textContent can only set plain text and no HTML.
 // document.querySelector('#current-' + activePlayer).textContent = dice;
-
 //.innerHTML you can add html. html needs to be in string for javascript to parse it.
-document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
+// document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
 
-//gets value of #score-1.
-var x = document.querySelector('#score-1').textContent;
-console.log(x);
+// //callback function
+// function btn() {
+//  //do something here
+// }
 
-//hides dice at the beginning of game.
-document.querySelector('.dice').style.display = 'none';d
+// // https://developer.mozilla.org/en-US/docs/Web/Events -- event listener list
+
+// //callback function- not called by us but by another function. 
+// //function that is passed into another function as an argument. In this case eventlistener will call the function
+// document.querySelector('.btn-roll').addEventListener('click', btn);
