@@ -28,4 +28,4 @@ var x = document.querySelector('#score-1').textContent;
 console.log(x);
 
 //hides dice at the beginning of game.
-document.querySelector('.dice').style.display = 'none';
+document.querySelector('.dice').style.display = 'none';d
