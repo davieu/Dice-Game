@@ -20,7 +20,6 @@ document.querySelector('.dice').style.display = 'none';
 // document.getElementById('score-1').textContent = '0';
 // document.getElementById('current-0').textContent = '0';
 // document.getElementById('current-1').textContent = '0';
-
 document.querySelector('#score-0').innerHTML = '0';
 document.querySelector('#score-1').innerHTML = '0';
 document.querySelector('#current-0').innerHTML = '0';
@@ -35,6 +34,32 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     diceDOM.style.display = 'block';
     diceDOM.src = 'img/dice-' + dice + '.png';
     //Update the round score IF the rolled number was not 1.
+    if (dice !== 1) {
+        //add score
+        //adds the dice throws
+        roundScore += dice;
+        //gets the current player score
+        document.querySelector('#current-' + activePlayer).innerHTML = roundScore;
+    } else {
+        //next player
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+               // if (activePlayer === 0) {
+        //     activePlayer = 1;
+        // }else {
+        //     activePlayer = 0;
+        // };
+        roundScore = 0;
+
+        document.getElementById('current-0').textContent = '0';
+        document.getElementById('current-1').textContent = '0';
+
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+        //bottom 2 are for reference. the toggle works better.
+        // document.querySelector('.player-0-panel').classList.remove('active');
+        // document.querySelector('.player-1-panel').classList.add('active');
+        document.querySelector('.dice').style.display = 'none';
+    }
 });
 
 
