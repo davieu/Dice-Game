@@ -29,30 +29,26 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     if (gamePlaying) {
         
         //roll a dice randomly 1-6
-        var dice = Math.floor(Math.random() *6) +1;
-        
+        var dice1 = Math.floor(Math.random() *6) +1;
+        var dice2 = Math.floor(Math.random() *6) +1;
+
         //2. display the result
-        var diceDOM = document.querySelector('.dice');
-        diceDOM.style.display = 'block';
-        diceDOM.src = 'img/dice-' + dice + '.png';
-        
-        //Update the round score IF the rolled number was not 1.
-        if (dice === 6 && lastDice === 6) {
-            //player loses score
-            scores[activePlayer] = 0;
-            document.querySelector('#score-' + activePlayer).textContent = 0;
-            alert('player ' + [activePlayer + 1] + ' rolled ' + dice + ' twice!!! Score reset')
-            nextPlayer()
-        } else if (dice !== 1) {
+        document.getElementById('dice-1').style.display = 'block';
+        document.getElementById('dice-2').style.display = 'block';
+        document.getElementById('dice-1').src = 'img/dice-' + dice1 + '.png';
+        document.getElementById('dice-2').src = 'img/dice-' + dice2 + '.png';
+
+        if (dice1 !== 1 && dice2 !== 1) {
             //add score, adds the dice throws
-            roundScore += dice;
+            roundScore += dice1 + dice2;
             //gets the current player score
             document.querySelector('#current-' + activePlayer).innerHTML = roundScore;
         } else {
             nextPlayer();
         }
-        
-        lastDice = dice;
+        console.log('dice 1 = ' + dice1)
+        console.log('dice 2 = ' + dice2)
+
     }
 });
 
@@ -80,7 +76,8 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         //check if player won game, or goes to Next player
         if (scores[activePlayer] >= winningScore) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
-            document.querySelector('.dice').style.display = 'none';
+            document.getElementById('dice-1').style.display = 'none';
+            document.getElementById('dice-2').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             gamePlaying = false;
@@ -94,6 +91,8 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 function nextPlayer() {
     //next player
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+
+    //if written as an IF statment
             // if (activePlayer === 0) {
     //     activePlayer = 1;
     // }else {
@@ -103,13 +102,10 @@ function nextPlayer() {
 
     document.getElementById('current-0').textContent = '0';
     document.getElementById('current-1').textContent = '0';
-
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
-    //bottom 2 are for reference. the toggle works better.
-    // document.querySelector('.player-0-panel').classList.remove('active');
-    // document.querySelector('.player-1-panel').classList.add('active');
-    document.querySelector('.dice').style.display = 'none';
+    document.getElementById('dice-1').style.display = 'none';
+    document.getElementById('dice-2').style.display = 'none';
 }
 
 
@@ -124,12 +120,9 @@ function init() {
     gamePlaying = true;
 
     //hides dice at the beginning of game.
-    document.querySelector('.dice').style.display = 'none';
+    document.getElementById('dice-1').style.display = 'none';
+    document.getElementById('dice-2').style.display = 'none';
 
-    // document.getElementById('score-0').textContent = '0';
-    // document.getElementById('score-1').textContent = '0';
-    // document.getElementById('current-0').textContent = '0';
-    // document.getElementById('current-1').textContent = '0';
     document.querySelector('#score-0').innerHTML = '0';
     document.querySelector('#score-1').innerHTML = '0';
     document.querySelector('#current-0').innerHTML = '0';

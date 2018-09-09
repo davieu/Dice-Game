@@ -24,6 +24,9 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         var diceDOM = document.querySelector('.dice');
         diceDOM.style.display = 'block';
         diceDOM.src = 'img/dice-' + dice + '.png';
+        
+
+        //INSERT THE SNIPPET HERE BELOW TILL THE NEXT comment // if you want to reset score after rolling 2 sixes in a row.
         //Update the round score IF the rolled number was not 1.
         if (dice !== 1) {
             //add score, adds the dice throws
@@ -33,8 +36,24 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         } else {
             nextPlayer();
         }
+        //
     }
 });
+//INSERT THE SNIPPET HERE ABOVE // if you want to reset score after rolling 2 sixes in a row.
+    // if (dice === 6 && lastDice === 6) {
+    //     //Player looses score
+    //     scores[activePlayer] = 0;
+    //     document.querySelector('#score-' + activePlayer).textContent = '0';
+    //     nextPlayer();
+    // } else if (dice !== 1) {
+    //     //Add score
+    //     roundScore += dice;
+    //     document.querySelector('#current-' + activePlayer).textContent = roundScore;
+    // } else {
+    //     //Next player
+    //     nextPlayer();
+    // }
+    // lastDice = dice;
 
 
 //saves the round score and changes turn depending on if a player won or not
@@ -75,6 +94,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 function nextPlayer() {
     //next player
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    //under is the IF alternative
             // if (activePlayer === 0) {
     //     activePlayer = 1;
     // }else {
@@ -87,9 +107,6 @@ function nextPlayer() {
 
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
-    //bottom 2 are for reference. the toggle works better.
-    // document.querySelector('.player-0-panel').classList.remove('active');
-    // document.querySelector('.player-1-panel').classList.add('active');
     document.querySelector('.dice').style.display = 'none';
 }
 
@@ -106,11 +123,7 @@ function init() {
 
     //hides dice at the beginning of game.
     document.querySelector('.dice').style.display = 'none';
-
-    // document.getElementById('score-0').textContent = '0';
-    // document.getElementById('score-1').textContent = '0';
-    // document.getElementById('current-0').textContent = '0';
-    // document.getElementById('current-1').textContent = '0';
+    
     document.querySelector('#score-0').innerHTML = '0';
     document.querySelector('#score-1').innerHTML = '0';
     document.querySelector('#current-0').innerHTML = '0';
