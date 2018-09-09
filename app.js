@@ -6,6 +6,8 @@ GAME RULES:
 - The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
 - The first player to reach 100 points on GLOBAL score wins the game
 */
+//if 6 is rolled twice thw whole score is reset and nextplayer turn
+//i need to figure out if to sixes are rolled in a roll
 
 //these are declared variables
 var scores, roundScore, activePlayer, gamePlaying;
@@ -16,7 +18,7 @@ init();
 //anonymous function- function that doesnt have a name so it cant be reused
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if (gamePlaying) {
-            //roll a dice randomly 1-6
+         //roll a dice randomly 1-6
         var dice = Math.floor(Math.random() *6) +1;
         //2. display the result
         var diceDOM = document.querySelector('.dice');
@@ -31,9 +33,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         } else {
             nextPlayer();
         }
-
     }
-
 });
 
 
