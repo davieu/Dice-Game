@@ -7,49 +7,55 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 */
 
-var scores, roundScore, activePlayer;
+//these are declared variables
+var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
 //rolls the dice 1-6
 //anonymous function- function that doesnt have a name so it cant be reused
 document.querySelector('.btn-roll').addEventListener('click', function() {
-    //roll a dice randomly 1-6
-    var dice = Math.floor(Math.random() *6) +1;
-    //2. display the result
-    var diceDOM = document.querySelector('.dice');
-    diceDOM.style.display = 'block';
-    diceDOM.src = 'img/dice-' + dice + '.png';
-    //Update the round score IF the rolled number was not 1.
-    if (dice !== 1) {
-        //add score
-        //adds the dice throws
-        roundScore += dice;
-        //gets the current player score
-        document.querySelector('#current-' + activePlayer).innerHTML = roundScore;
-    } else {
-        nextPlayer();
+    if (gamePlaying) {
+            //roll a dice randomly 1-6
+        var dice = Math.floor(Math.random() *6) +1;
+        //2. display the result
+        var diceDOM = document.querySelector('.dice');
+        diceDOM.style.display = 'block';
+        diceDOM.src = 'img/dice-' + dice + '.png';
+        //Update the round score IF the rolled number was not 1.
+        if (dice !== 1) {
+            //add score, adds the dice throws
+            roundScore += dice;
+            //gets the current player score
+            document.querySelector('#current-' + activePlayer).innerHTML = roundScore;
+        } else {
+            nextPlayer();
+        }
+
     }
+
 });
 
 
 //saves the round score and changes turn depending on if a player won or not
 document.querySelector('.btn-hold').addEventListener('click', function() {
-    //add CURRENT score to GLOBAL score
-    scores[activePlayer] += roundScore;
-    //update UI
-    document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
-    
-    //check if player won game
-    //Next player
-    if (scores[activePlayer] < 10) {
-        nextPlayer();
-    } else {
-        document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
-        document.querySelector('.dice').style.display = 'none';
-        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
-        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
-    }
+    if (gamePlaying) {
+        //add CURRENT score to GLOBAL score
+        scores[activePlayer] += roundScore;
+        //update UI
+        document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
+        //check if player won game, or goes to Next player
+        if (scores[activePlayer] < 10) {
+            nextPlayer();
+        } else {
+            document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+            document.querySelector('.dice').style.display = 'none';
+            document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+            document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+            gamePlaying = false;
+        }
+    };
+
 });
 
 //switches player based on active player and resets roundscore.
@@ -83,6 +89,7 @@ function init() {
     scores = [0, 0];
     roundScore = 0;
     activePlayer = 0;
+    gamePlaying = true;
 
     //hides dice at the beginning of game.
     document.querySelector('.dice').style.display = 'none';
@@ -109,7 +116,7 @@ function init() {
 }
 
 
-
+//PERSONAL NOTES
 //.textContent can only set plain text and no HTML.
 // document.querySelector('#current-' + activePlayer).textContent = dice;
 //.innerHTML you can add html. html needs to be in string for javascript to parse it.
