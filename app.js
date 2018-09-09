@@ -44,19 +44,32 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         scores[activePlayer] += roundScore;
         //update UI
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
-        //check if player won game, or goes to Next player
-        if (scores[activePlayer] < 10) {
-            nextPlayer();
+
+        var input = document.querySelector('.final-score').value;
+        var winningScore;
+        console.log(input);
+
+        //undefined, 0, null, or "" are coerced to false
+        //anything else is coerced to true
+        if (input) {
+            winningScore = input;
         } else {
+            winningScore = 50;
+        };
+
+        //check if player won game, or goes to Next player
+        if (scores[activePlayer] >= winningScore) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             gamePlaying = false;
+        } else {
+            nextPlayer();
         }
     };
-
 });
+
 
 //switches player based on active player and resets roundscore.
 function nextPlayer() {

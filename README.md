@@ -1,5 +1,11 @@
 # Dice-Game
 
+You can either use the chalenges.js or app.js. Be sure to comment out the one you will not be using on the index.html.
+
+NOTE: the app.js is the normal game but i added the edit the final score so that users can change at anytime. Just type in the final score input box and put the final score that you want and then press hold.
+
+NOTE: also had edit score. The challenges.js has extra rules implemented like if you get 2 sixes in a row the active player will get his/her score reset. and also has an extra dice at play
+
 /*
 GAME RULES:
 - The game has 2 players, playing in rounds
@@ -22,7 +28,7 @@ change the image in an <img> element;
 add, remove, and toggle HTML classes;
 DRY principle
 
-some reminders
+personal reminders
 //gets value of #score-1.
 var x = document.querySelector('#score-1').textContent;
 console.log(x);

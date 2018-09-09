@@ -16,6 +16,8 @@
     text-transform: uppercase;
 }
 
+.final-score:focus { outline: none; }
+
 * {
     margin: 0;
     padding: 0;
