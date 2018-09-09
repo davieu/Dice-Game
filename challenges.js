@@ -54,9 +54,6 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         
         lastDice = dice;
     }
-    console.log('player ' + activePlayer)
-    console.log('local ' + lastDice);
-    console.log(dice)
 });
 
 
@@ -68,7 +65,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         //update UI
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
         //check if player won game, or goes to Next player
-        if (scores[activePlayer] < 10) {
+        if (scores[activePlayer] < 100) {
             nextPlayer();
         } else {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
