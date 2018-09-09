@@ -9,22 +9,9 @@ GAME RULES:
 
 var scores, roundScore, activePlayer;
 
-scores = [0, 0];
-roundScore = 0;
-activePlayer = 0;
+init();
 
-//hides dice at the beginning of game.
-document.querySelector('.dice').style.display = 'none';
-
-// document.getElementById('score-0').textContent = '0';
-// document.getElementById('score-1').textContent = '0';
-// document.getElementById('current-0').textContent = '0';
-// document.getElementById('current-1').textContent = '0';
-document.querySelector('#score-0').innerHTML = '0';
-document.querySelector('#score-1').innerHTML = '0';
-document.querySelector('#current-0').innerHTML = '0';
-document.querySelector('#current-1').innerHTML = '0';
-
+//rolls the dice 1-6
 //anonymous function- function that doesnt have a name so it cant be reused
 document.querySelector('.btn-roll').addEventListener('click', function() {
     //roll a dice randomly 1-6
@@ -45,43 +32,81 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     }
 });
 
+
+//saves the round score and changes turn depending on if a player won or not
 document.querySelector('.btn-hold').addEventListener('click', function() {
     //add CURRENT score to GLOBAL score
     scores[activePlayer] += roundScore;
     //update UI
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
-    if (scores[activePlayer] < 20) {
-        nextPlayer();
-    } else {
-        alert('you win player ' + activePlayer + ' with ' + scores[activePlayer] + ' points!');
-    }
-
+    
     //check if player won game
     //Next player
+    if (scores[activePlayer] < 10) {
+        nextPlayer();
+    } else {
+        document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+    }
 });
 
+//switches player based on active player and resets roundscore.
 function nextPlayer() {
     //next player
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-               // if (activePlayer === 0) {
-        //     activePlayer = 1;
-        // }else {
-        //     activePlayer = 0;
-        // };
-        roundScore = 0;
+            // if (activePlayer === 0) {
+    //     activePlayer = 1;
+    // }else {
+    //     activePlayer = 0;
+    // };
+    roundScore = 0;
 
-        document.getElementById('current-0').textContent = '0';
-        document.getElementById('current-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
 
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-        //bottom 2 are for reference. the toggle works better.
-        // document.querySelector('.player-0-panel').classList.remove('active');
-        // document.querySelector('.player-1-panel').classList.add('active');
-        document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+    //bottom 2 are for reference. the toggle works better.
+    // document.querySelector('.player-0-panel').classList.remove('active');
+    // document.querySelector('.player-1-panel').classList.add('active');
+    document.querySelector('.dice').style.display = 'none';
 }
 
 
+//starts a new game when click on new game by passing init function in the argument. When button clicked init function is called.
+document.querySelector('.btn-new').addEventListener('click', init);
+
+//this is the initialization function. all stats are reset or how the board looks on load up.
+function init() {
+    scores = [0, 0];
+    roundScore = 0;
+    activePlayer = 0;
+
+    //hides dice at the beginning of game.
+    document.querySelector('.dice').style.display = 'none';
+
+    // document.getElementById('score-0').textContent = '0';
+    // document.getElementById('score-1').textContent = '0';
+    // document.getElementById('current-0').textContent = '0';
+    // document.getElementById('current-1').textContent = '0';
+    document.querySelector('#score-0').innerHTML = '0';
+    document.querySelector('#score-1').innerHTML = '0';
+    document.querySelector('#current-0').innerHTML = '0';
+    document.querySelector('#current-1').innerHTML = '0';
+
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+
+    //the player that is actively rolling
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
+
+    document.querySelector('#name-0').textContent = 'PLAYER 1';
+    document.querySelector('#name-1').textContent = 'PLAYER 2';
+}
 
 
 
