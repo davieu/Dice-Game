@@ -1,6 +1,7 @@
 # Dice-Game
 
-You can either use the chalenges.js or app.js. Be sure to comment out the one you will not be using on the index.html. also comment out the <img SRC dices> depending on which JS file you want to use. Instructions are in the comments of files for further direction.
+
+You can either use the chalenges.js or app.js. Be sure to comment out the one you will not be using on the index.html. also comment out the < img SRC dices> depending on which JS file you want to use. Instructions are in the comments of files for further direction.
 
 NOTE: the app.js is the normal game but i added the edit the final score so that users can change at anytime. Just type in the final score input box and put the final score that you want and then press hold. Also in the app.js file you will find a commented out feature that you can uncomment to use. further instructions on the code file.
 
