@@ -1,0 +1,19 @@
+{
+  "name": "dice-game",
+  "version": "1.0.0",
+  "description": "You can either use the chalenges.js or app.js. Be sure to comment out the one you will not be using on the index.html. also comment out the < img SRC dices> depending on which JS file you want to use. Instructions are in the comments of files for further direction.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davieu/Dice-Game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davieu/Dice-Game/issues"
+  },
+  "homepage": "https://github.com/davieu/Dice-Game#readme"
+}
