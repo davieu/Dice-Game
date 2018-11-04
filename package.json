@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/davieu/Dice-Game/issues"
   },
-  "homepage": "https://github.com/davieu/Dice-Game#readme"
+  "homepage": "https://github.com/davieu/Dice-Game#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
